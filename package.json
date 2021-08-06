@@ -1,12 +1,12 @@
 {
   "name": "@open-tech-world/node-rm",
   "version": "0.1.0",
-  "description": "",
-  "keywords": [],
+  "description": "Remove files & directories using glob patterns.",
+  "keywords": ["remove", "del", "delete", "file", "files", "dir", "dirs", "folder", "folders", "glob", "rm", "node"],
   "author": {
     "name": "Thanga Ganapathy",
     "email": "ganapathy888@gmail.com",
-    "url": ""
+    "url": "https://thanga-ganapathy.github.io"
   },
   "license": "MIT",
   "homepage": "",
@@ -35,8 +35,8 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.5",
     "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -44,7 +44,12 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
-    "rollup": "^2.55.1",
+    "rollup": "^2.56.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@open-tech-world/es-cli-styles": "^0.1.2",
+    "@open-tech-world/es-glob": "^0.7.0",
+    "@open-tech-world/node-glob": "^0.3.0"
   }
 }

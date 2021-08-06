@@ -1,5 +1,3 @@
-function nodeRm(): string {
-  return 'Hello World!';
-}
+import syncRm from './syncRm';
 
-export default nodeRm;
+export { syncRm };

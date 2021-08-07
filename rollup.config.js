@@ -9,5 +9,10 @@ export default {
     },
   ],
   plugins: [typescript({ tsconfig: './tsconfig.json' })],
-  external: [],
+  external: [
+    '@open-tech-world/es-cli-styles',
+    '@open-tech-world/node-glob',
+    'fs',
+    'path',
+  ],
 };

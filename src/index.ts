@@ -1,3 +1,3 @@
-import syncRm from './syncRm';
+import rmSync from './rmSync';
 
-export { syncRm };
+export { rmSync };

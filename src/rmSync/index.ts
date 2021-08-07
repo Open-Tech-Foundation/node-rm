@@ -1,6 +1,7 @@
 import { style } from '@open-tech-world/es-cli-styles';
 
 import IOptions from '../IOptions';
+import printResult from '../printResult';
 import getEntries from './getEntries';
 import removeEntries from './removeEntries';
 
@@ -10,6 +11,8 @@ function rmSync(patterns: string | string[], options?: IOptions): void {
   const defaultOptions: IOptions = {
     cwd: process.cwd(),
     dot: false,
+    verbose: false,
+    colors: false,
   };
 
   const currentOptions = options
@@ -31,7 +34,10 @@ function rmSync(patterns: string | string[], options?: IOptions): void {
       currentOptions,
       result
     );
-    console.log(result);
+
+    if (currentOptions.verbose) {
+      printResult(result, currentOptions);
+    }
   } catch (error) {
     console.error(style(`~red.bold{Error:} ~red{${error.message}}`));
   }

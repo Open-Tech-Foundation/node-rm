@@ -105,7 +105,7 @@ describe('rmSync', () => {
 
   test('star', () => {
     const patterns = ['*'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(14);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(15);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -114,7 +114,7 @@ describe('rmSync', () => {
 
   test('star with dot', () => {
     const patterns = ['*'];
-    expect(globSync(patterns, { cwd: myAppDir, dot: true })).toHaveLength(16);
+    expect(globSync(patterns, { cwd: myAppDir, dot: true })).toHaveLength(17);
     rmSync(patterns, {
       cwd: myAppDir,
       dot: true,
@@ -133,7 +133,7 @@ describe('rmSync', () => {
 
   test('star with negation', () => {
     const patterns = ['*', '!node_modules'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(13);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(14);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -142,7 +142,7 @@ describe('rmSync', () => {
 
   test('star with multiple negation', () => {
     const patterns = ['*', '!node_modules', '!*.lock'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(12);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(13);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -150,14 +150,19 @@ describe('rmSync', () => {
   });
 
   test('star with deep negation', () => {
-    const patterns = ['*', '!node_modules', '!public/assets/logo.svg'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(13);
+    const patterns = [
+      '*',
+      '!node_modules',
+      '!public/assets/logo.svg',
+      '!public/assets/pdfs/[1-2].pdf',
+    ];
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(14);
     rmSync(patterns, {
       cwd: myAppDir,
     });
     expect(
       globSync(['**', '!node_modules'], { cwd: myAppDir, dirs: false })
-    ).toHaveLength(1);
+    ).toHaveLength(3);
   });
 
   it('removes range of dirs', () => {
@@ -171,7 +176,7 @@ describe('rmSync', () => {
 
   it('removes range of dirs with range negation', () => {
     const patterns = ['[^ax]'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(4);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(5);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -189,7 +194,7 @@ describe('rmSync', () => {
 
   test('glob star', () => {
     const patterns = ['**'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(41);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(78);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -198,7 +203,7 @@ describe('rmSync', () => {
 
   test('glob star with negation', () => {
     const patterns = ['**', '!**/logo.svg'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(40);
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(77);
     rmSync(patterns, {
       cwd: myAppDir,
     });
@@ -206,11 +211,30 @@ describe('rmSync', () => {
   });
 
   test('glob star with multiple negation', () => {
-    const patterns = ['**', '!**/logo.svg', '!node_modules'];
-    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(36);
+    const patterns = ['**', '!**/logo.svg', '!node_modules', '!1/2/3/*'];
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(41);
     rmSync(patterns, {
       cwd: myAppDir,
     });
-    expect(globSync('**', { cwd: myAppDir, dirs: false })).toHaveLength(2);
+    expect(
+      globSync(['**', '!node_modules'], { cwd: myAppDir, dirs: false })
+    ).toHaveLength(4);
+  });
+
+  test('glob star with deep negation', () => {
+    const patterns = [
+      '**',
+      '!**/logo.svg',
+      '!node_modules',
+      '!1/*.*',
+      '!**/4/**',
+    ];
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(42);
+    rmSync(patterns, {
+      cwd: myAppDir,
+    });
+    expect(
+      globSync(['**', '!node_modules'], { cwd: myAppDir, dirs: false })
+    ).toHaveLength(4);
   });
 });

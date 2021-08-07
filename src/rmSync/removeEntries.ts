@@ -33,18 +33,23 @@ function removeEntries(
         removeDir(entryPath, result);
         return;
       } else {
-        console.log('Skip: ', entryPath);
-        const dirEntries = getEntries(
-          [`${entry}/*`, ...ignorePatterns],
-          options
+        const hasEntries = entries.some((item) =>
+          new RegExp(entry + '/.+').test(item)
         );
-        removeEntries(
-          dirEntries,
-          ignoreEntries,
-          ignorePatterns,
-          options,
-          result
-        );
+
+        if (!hasEntries) {
+          const dirEntries = getEntries(
+            [`${entry}/*`, ...ignorePatterns],
+            options
+          );
+          removeEntries(
+            dirEntries,
+            ignoreEntries,
+            ignorePatterns,
+            options,
+            result
+          );
+        }
       }
     }
 

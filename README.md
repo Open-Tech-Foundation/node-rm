@@ -1,6 +1,12 @@
+<div align="center">
+
 # @open-tech-world/node-rm
+[![Linux Build](https://github.com/open-tech-world/node-rm/actions/workflows/linux_build.yml/badge.svg)](https://github.com/open-tech-world/node-rm/actions/workflows/linux_build.yml) [![macOS Build](https://github.com/open-tech-world/node-rm/actions/workflows/macos_build.yml/badge.svg)](https://github.com/open-tech-world/node-rm/actions/workflows/macos_build.yml) [![Windows Build](https://github.com/open-tech-world/node-rm/actions/workflows/windows_build.yml/badge.svg)](https://github.com/open-tech-world/node-rm/actions/workflows/windows_build.yml) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/node-rm/badge)](https://www.codefactor.io/repository/github/open-tech-world/node-rm) ![npm](https://img.shields.io/npm/v/@open-tech-world/node-rm?color=blue)
+
+</div>
 
 > Remove files & directories using [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns.
+
 
 Internally it uses [open-tech-world/node-glob](https://github.com/open-tech-world/node-glob) for matching files & directories. Refer it for supported glob patterns and more info.
 

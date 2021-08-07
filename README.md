@@ -48,7 +48,7 @@ rmSync(patterns: string | string[],
 | cwd     | string  | process.cwd() | The current working directory in which to remove files & folders.               |
 | dot     | boolean | false         | If true, it removes files & directories that begin with a `"."`(dot) character. |
 | verbose | boolean | false         | If true, the current status will be output to the console.                      |
-| colors  | boolean | true          | If false, it turns off color output.                                            |
+| colors  | boolean | false          | If true, it turns on color output.                                            |
 
 ## Examples
 

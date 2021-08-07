@@ -1,53 +1,73 @@
-import { statSync, unlinkSync, rmdirSync } from 'fs';
+import { statSync, unlinkSync, rmdirSync, existsSync } from 'fs';
 import Path from 'path';
 import { style } from '@open-tech-world/es-cli-styles';
 import { globSync } from '@open-tech-world/node-glob';
-import { matchPathGlob } from '@open-tech-world/es-glob';
 
 import IOptions from './IOptions';
 
-function removeDir(
-  entry: string,
-  ignoreEntries: string[],
-  ignorePatterns: string[],
-  options: IOptions
-) {
-  const entryPath = Path.join(options.cwd, entry);
-  const skip = ignoreEntries.some((p) => matchPathGlob(entry, p));
-
-  if (skip) {
-    console.log(style('~yellow{' + entryPath + '}'));
-    const entries = getEntries([entry + '/*', ...ignorePatterns], options);
-    removeEntries(entries, ignoreEntries, ignorePatterns, options);
-    return;
+function removeDir(entryPath: string, result: string[]): void {
+  if (existsSync(entryPath)) {
+    rmdirSync(entryPath, { recursive: true });
+    result.push(entryPath);
   }
-
-  rmdirSync(entryPath, { recursive: true });
-  console.log(style('~red{' + entryPath + '}'));
 }
 
-function removeFile(entryPath: string) {
-  unlinkSync(entryPath);
-  console.log(style('~red{' + entryPath + '}'));
+function removeFile(entryPath: string, result: string[]): void {
+  if (existsSync(entryPath)) {
+    unlinkSync(entryPath);
+    result.push(entryPath);
+  }
+}
+
+function canRemoveDir(dir: string, ignoreEntries: string[]): boolean {
+  const bool = ignoreEntries.some((entry) => entry.startsWith(dir));
+
+  return !bool;
 }
 
 function removeEntries(
   entries: string[],
   ignoreEntries: string[],
   ignorePatterns: string[],
-  options: IOptions
+  options: IOptions,
+  result: string[]
 ): void {
   entries.forEach((entry) => {
     const entryPath = Path.join(options.cwd, entry);
 
+    if (!existsSync(entryPath)) {
+      return;
+    }
+
+    if (result.includes(Path.dirname(entryPath))) {
+      result.push(entryPath);
+      return;
+    }
+
     const stat = statSync(entryPath);
 
     if (stat.isDirectory()) {
-      removeDir(entry, ignoreEntries, ignorePatterns, options);
+      if (canRemoveDir(entry, ignoreEntries)) {
+        removeDir(entryPath, result);
+        return;
+      } else {
+        console.log('Skip: ', entryPath);
+        const dirEntries = getEntries(
+          [`${entry}/*`, ...ignorePatterns],
+          options
+        );
+        removeEntries(
+          dirEntries,
+          ignoreEntries,
+          ignorePatterns,
+          options,
+          result
+        );
+      }
     }
 
     if (stat.isFile()) {
-      removeFile(entryPath);
+      removeFile(entryPath, result);
     }
   });
 }
@@ -62,6 +82,8 @@ function getEntries(patterns: string | string[], options: IOptions): string[] {
 }
 
 function syncRm(patterns: string | string[], options?: IOptions): void {
+  const result: string[] = [];
+
   const defaultOptions: IOptions = {
     cwd: process.cwd(),
     dot: false,
@@ -79,7 +101,16 @@ function syncRm(patterns: string | string[], options?: IOptions): void {
       ignorePatterns.map((p) => p.substring(1)),
       currentOptions
     );
-    removeEntries(entries, ignoreEntries, ignorePatterns, currentOptions);
+    console.log('ignoreEntries', ignoreEntries);
+
+    removeEntries(
+      entries,
+      ignoreEntries,
+      ignorePatterns,
+      currentOptions,
+      result
+    );
+    console.log(result);
   } catch (error) {
     console.error(style(`~red.bold{Error:} ~red{${error.message}}`));
   }

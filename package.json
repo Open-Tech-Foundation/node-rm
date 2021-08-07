@@ -2,7 +2,20 @@
   "name": "@open-tech-world/node-rm",
   "version": "0.1.0",
   "description": "Remove files & directories using glob patterns.",
-  "keywords": ["remove", "del", "delete", "file", "files", "dir", "dirs", "folder", "folders", "glob", "rm", "node"],
+  "keywords": [
+    "remove",
+    "del",
+    "delete",
+    "file",
+    "files",
+    "dir",
+    "dirs",
+    "folder",
+    "folders",
+    "glob",
+    "rm",
+    "node"
+  ],
   "author": {
     "name": "Thanga Ganapathy",
     "email": "ganapathy888@gmail.com",

@@ -5,7 +5,10 @@ import printResult from '../printResult';
 import getEntries from './getEntries';
 import removeEntries from './removeEntries';
 
-function rmSync(patterns: string | string[], options?: IOptions): void {
+function rmSync(
+  patterns: string | string[],
+  options?: Partial<IOptions>
+): void {
   const result: string[] = [];
 
   const defaultOptions: IOptions = {

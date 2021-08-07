@@ -39,7 +39,7 @@ function removeEntries(
 
         if (!hasEntries) {
           const dirEntries = getEntries(
-            [`${entry}/*`, ...ignorePatterns],
+            [`${entry.replace(/\\/g, '/')}/*`, ...ignorePatterns],
             options
           );
           removeEntries(

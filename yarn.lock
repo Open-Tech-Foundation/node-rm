@@ -726,10 +726,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-cli-styles@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@open-tech-world/es-cli-styles@npm:0.1.2"
-  checksum: 544ebf56d1b52c5a07547572f8ac53590ba4d8a22c6154ca1d5edb955a916214f7422259e54ae01acc9d944d1ef5e1263e86a887051985d8393ad0e617865303
+"@open-tech-world/es-cli-styles@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@open-tech-world/es-cli-styles@npm:0.2.0"
+  checksum: 1cd28720a520f279dc8c78e8dce4cd474d52ad962892f96a193d30605a7fd7844d093093132ec0f969521d50eb0f0feab4de6e6ee852cb03cbd18c12170a9092
   languageName: node
   linkType: hard
 
@@ -761,7 +761,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@open-tech-world/node-rm@workspace:."
   dependencies:
-    "@open-tech-world/es-cli-styles": ^0.1.2
+    "@open-tech-world/es-cli-styles": ^0.2.0
     "@open-tech-world/es-glob": ^0.7.0
     "@open-tech-world/node-glob": ^0.3.0
     "@rollup/plugin-typescript": ^8.2.5

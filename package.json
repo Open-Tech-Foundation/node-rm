@@ -1,6 +1,6 @@
 {
   "name": "@open-tech-world/node-rm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Remove files & directories using glob patterns.",
   "keywords": [
     "remove",

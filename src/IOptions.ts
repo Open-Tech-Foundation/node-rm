@@ -3,4 +3,5 @@ export default interface IOptions {
   dot: boolean;
   verbose: boolean;
   colors: boolean;
+  dry: boolean;
 }

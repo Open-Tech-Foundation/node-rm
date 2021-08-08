@@ -30,7 +30,7 @@ function removeEntries(
 
     if (stat.isDirectory()) {
       if (canRemoveDir(entry, ignoreEntries)) {
-        removeDir(entryPath, result);
+        removeDir(entryPath, result, options);
         return;
       } else {
         const hasEntries = entries.some((item) =>
@@ -54,7 +54,7 @@ function removeEntries(
     }
 
     if (stat.isFile()) {
-      removeFile(entryPath, result);
+      removeFile(entryPath, result, options);
     }
   });
 }

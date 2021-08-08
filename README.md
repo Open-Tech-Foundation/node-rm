@@ -49,6 +49,7 @@ rmSync(patterns: string | string[],
 | dot     | boolean | false         | If true, it removes files & directories that begin with a `"."`(dot) character. |
 | verbose | boolean | false         | If true, the current status will be output to the console.                      |
 | colors  | boolean | false          | If true, it turns on color output.                                            |
+| dry  | boolean | false          | If true, it does not remove anything instead, it console logs what would be removed.                                            |
 
 ## Examples
 

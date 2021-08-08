@@ -16,6 +16,7 @@ function rmSync(
     dot: false,
     verbose: false,
     colors: false,
+    dry: false,
   };
 
   const currentOptions = options
@@ -38,7 +39,7 @@ function rmSync(
       result
     );
 
-    if (currentOptions.verbose) {
+    if (currentOptions.verbose || currentOptions.dry) {
       printResult(result, currentOptions);
     }
   } catch (error) {

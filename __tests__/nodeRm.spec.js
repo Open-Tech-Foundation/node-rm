@@ -11,9 +11,11 @@ const tempDir = Os.tmpdir();
 const myAppDir = Path.join(tempDir, 'my-app');
 
 let consoleErrorSpy;
+let consoleLogSpy;
 
 beforeEach(() => {
   consoleErrorSpy = jest.spyOn(console, 'error');
+  consoleLogSpy = jest.spyOn(console, 'log');
   setup();
 });
 
@@ -236,5 +238,27 @@ describe('rmSync', () => {
     expect(
       globSync(['**', '!node_modules'], { cwd: myAppDir, dirs: false })
     ).toHaveLength(4);
+  });
+
+  test('dry run glob star', () => {
+    const patterns = ['**'];
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(78);
+    rmSync(patterns, {
+      cwd: myAppDir,
+      dry: true,
+    });
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(78);
+    expect(consoleLogSpy).toHaveBeenCalled();
+  });
+
+  test('verbose glob star', () => {
+    const patterns = ['**'];
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(78);
+    rmSync(patterns, {
+      cwd: myAppDir,
+      verbose: true,
+    });
+    expect(globSync(patterns, { cwd: myAppDir })).toHaveLength(0);
+    expect(consoleLogSpy).toHaveBeenCalled();
   });
 });

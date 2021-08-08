@@ -62,7 +62,6 @@
   },
   "dependencies": {
     "@open-tech-world/es-cli-styles": "^0.2.0",
-    "@open-tech-world/es-glob": "^0.7.0",
     "@open-tech-world/node-glob": "^0.3.0"
   },
   "publishConfig": {

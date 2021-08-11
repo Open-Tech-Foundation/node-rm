@@ -28,10 +28,10 @@
     "url": "git+https://github.com/open-tech-world/node-rm.git"
   },
   "type": "module",
-  "main": "./lib/index.cjs.js",
+  "main": "./lib/index.cjs",
   "exports": {
     "import": "./lib/index.esm.js",
-    "require": "./lib/index.cjs.js"
+    "require": "./lib/index.cjs"
   },
   "typings": "./lib/index.d.ts",
   "engines": {
@@ -48,8 +48,8 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.5",
     "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@typescript-eslint/parser": "^4.29.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -57,14 +57,15 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
-    "rollup": "^2.56.0",
+    "rollup": "^2.56.2",
     "typescript": "^4.3.5"
   },
   "dependencies": {
     "@open-tech-world/es-cli-styles": "^0.2.0",
-    "@open-tech-world/node-glob": "^0.3.0"
+    "@open-tech-world/node-glob": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "packageManager": "yarn@3.0.0"
 }

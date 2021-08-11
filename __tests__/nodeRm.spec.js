@@ -4,7 +4,7 @@ import { existsSync } from 'fs';
 import { jest } from '@jest/globals';
 import { globSync } from '@open-tech-world/node-glob';
 
-import { rmSync } from '../lib/index.js';
+import { rmSync } from '../lib/index.esm.js';
 import setup from './setup.js';
 
 const tempDir = Os.tmpdir();

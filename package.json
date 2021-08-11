@@ -28,12 +28,12 @@
     "url": "git+https://github.com/open-tech-world/node-rm.git"
   },
   "type": "module",
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/index.cjs.js",
   "exports": {
-    ".": "./lib/index.js"
+    "import": "./lib/index.esm.js",
+    "require": "./lib/index.cjs.js"
   },
+  "typings": "./lib/index.d.ts",
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
